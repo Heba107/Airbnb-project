@@ -1,5 +1,4 @@
 package utils;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -12,8 +11,8 @@ public class WebActions extends SeleniumBase{
     }
 
     public void sendKeys(By path, String text){
-        WebElement sendkey = driver.findElement(path);
-        sendkey.sendKeys(text);
+        WebElement sendKey = driver.findElement(path);
+        sendKey.sendKeys(text);
 
     }
     public String getText(By path){

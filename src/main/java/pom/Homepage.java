@@ -3,59 +3,71 @@ package pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import utils.Locators;
+import utils.SeleniumBase;
 import utils.WebActions;
-
-import java.util.stream.Stream;
 
 public class Homepage {
 
-    public void closeADsPopup(WebDriver driver) throws InterruptedException {
-        Thread.sleep(10000);
-        WebElement close = driver.findElement(By.xpath("//span[@class='i9dqh6z dir dir-ltr']"));
-
-        close.click();
+    public void closeADsPopup(WebDriver driver) {
+        SeleniumBase selenium = new SeleniumBase();
+        By close = By.xpath("//span[@class='i9dqh6z dir dir-ltr']");
+        selenium.seleniumWait(150, close);
+        WebElement popUp = driver.findElement(close);
+        popUp.click();
     }
 
-    public void prepareSearchCriteria(String country, int startDayAfterchekIn) throws InterruptedException {
+
+    public void prepareSearchCriteria(String country, int startDayAfterCheckIn, int startDayAfterCheckOut) {
         WebActions webActions = new WebActions();
         Locators locators = new Locators();
-
+        SeleniumBase selenium = new SeleniumBase();
         webActions.click(locators.homePageSearch);
+        selenium.seleniumWait(20, locators.countrySelection);
 
-        Thread.sleep(2000);
+
         webActions.sendKeys(locators.countrySelection, country);
         webActions.click(locators.checkIn);
-        webActions.click(locators.generateCheckInDate(startDayAfterchekIn));
-        webActions.click(locators.generateCheckOutDate(startDayAfterchekIn));
-        webActions.click(locators.selectguests);
-        Thread.sleep(2000);
+        webActions.click(locators.generateCheckInDate(startDayAfterCheckIn));
+        webActions.click(locators.generateCheckOutDate(startDayAfterCheckOut));
+        webActions.click(locators.selectGuests);
 
-        webActions.click(locators.selectadult);
-        webActions.click(locators.selectadult);
-        webActions.click(locators.selectchildren);
+        selenium.seleniumWait(20, locators.selectAdult);
+
+        webActions.click(locators.selectAdult);
+        webActions.click(locators.selectAdult);
+        webActions.click(locators.selectChildren);
         webActions.click(locators.search);
-        Thread.sleep(4000);
 
-       // webActions.getText(locators.assertCheckDate(startDayAfterchekIn));
-    }
-    public String assertiondestination() throws InterruptedException {
-        Thread.sleep(3000);
+        selenium.seleniumWait(30, locators.maps);
 
-        WebActions webActions = new WebActions();
-        Locators locators = new Locators();
-        String actualdestination= webActions.getText(locators.actualdestination);
-        return actualdestination;
     }
 
-    public String assertionguests() throws InterruptedException {
-        Thread.sleep(2000);
+    public String assertionDestination() {
+        Locators locators = new Locators();
+        SeleniumBase selenium = new SeleniumBase();
+        WebActions webActions = new WebActions();
+        selenium.seleniumWait(20, locators.actualDestination);
 
+        return webActions.getText(locators.actualDestination);
+    }
+
+    public String assertionGuests() {
+        SeleniumBase selenium = new SeleniumBase();
         WebActions webActions = new WebActions();
         Locators locators = new Locators();
-        String actualguests= webActions.getText(locators.actualguest);
-        return actualguests;
+        selenium.seleniumWait(20, locators.actualGuest);
+
+        return webActions.getText(locators.actualGuest);
+    }
+
+    public String assertionDates() {
+        SeleniumBase selenium = new SeleniumBase();
+        WebActions webActions = new WebActions();
+        Locators locators = new Locators();
+        selenium.seleniumWait(20, locators.actualDates);
+
+        return webActions.getText(locators.actualDates);
     }
 
 
