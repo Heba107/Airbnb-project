@@ -51,13 +51,13 @@ public class Locators extends SeleniumBase {
         int dayOfMonth2 = LocalDate.now().plusDays(daysCheckOut).getDayOfMonth();
 
 
+        String output;
         if (month1.equals(month2)) {
-            String output = String.format("%s %s – %s", month1, dayOfMonth1, dayOfMonth2);
-            return output;
+            output = String.format("%s %s – %s", month1, dayOfMonth1, dayOfMonth2);
         } else {
-            String output = String.format("%s %s – %s %s", month1, dayOfMonth1, month2, dayOfMonth2);
-            return output;
+            output = String.format("%s %s – %s %s", month1, dayOfMonth1, month2, dayOfMonth2);
 
         }
+        return output;
     }
 }

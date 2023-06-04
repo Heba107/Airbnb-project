@@ -23,8 +23,8 @@ public class Homepage {
         Locators locators = new Locators();
         SeleniumBase selenium = new SeleniumBase();
         webActions.click(locators.homePageSearch);
-        selenium.seleniumWait(20, locators.countrySelection);
 
+        selenium.seleniumWait(30, locators.countrySelection);
 
         webActions.sendKeys(locators.countrySelection, country);
         webActions.click(locators.checkIn);
