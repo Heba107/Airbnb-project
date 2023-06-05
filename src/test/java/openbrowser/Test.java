@@ -15,10 +15,10 @@ public class Test {
     @BeforeTest
     public void init() {
         SeleniumBase seleniumBase = new SeleniumBase();
-        Homepage homepage = new Homepage();
+        //Homepage homepage = new Homepage();
 
-        WebDriver driver = seleniumBase.seleniumConfig("https://www.airbnb.com/");
-        homepage.closeADsPopup(driver);
+        seleniumBase.seleniumConfig("https://www.airbnb.com/");
+       // homepage.closeADsPopup(driver);
     }
 
     SoftAssert softAssert = new SoftAssert();
@@ -29,7 +29,7 @@ public class Test {
     }
 
     @org.testng.annotations.Test(priority = 1)
-    public void searchForItaly() {
+    public void searchForItaly() throws InterruptedException {
         Homepage homepage = new Homepage();
         Locators locators = new Locators();
         int startDay = 0;

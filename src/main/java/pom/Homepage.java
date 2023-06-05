@@ -9,19 +9,21 @@ import utils.WebActions;
 
 public class Homepage {
 
-    public void closeADsPopup(WebDriver driver) {
+   /* public void closeADsPopup(WebDriver driver) {
         SeleniumBase selenium = new SeleniumBase();
         By close = By.xpath("//span[@class='i9dqh6z dir dir-ltr']");
         selenium.seleniumWait(150, close);
         WebElement popUp = driver.findElement(close);
         popUp.click();
-    }
+    }*/
 
 
-    public void prepareSearchCriteria(String country, int startDayAfterCheckIn, int startDayAfterCheckOut) {
+    public void prepareSearchCriteria(String country, int startDayAfterCheckIn, int startDayAfterCheckOut)  throws InterruptedException{
         WebActions webActions = new WebActions();
         Locators locators = new Locators();
         SeleniumBase selenium = new SeleniumBase();
+
+        selenium.seleniumWait(30, locators.homePageSearch);
         webActions.click(locators.homePageSearch);
 
         selenium.seleniumWait(30, locators.countrySelection);
@@ -43,7 +45,7 @@ public class Homepage {
 
     }
 
-    public String assertionDestination() {
+    public String assertionDestination()  throws InterruptedException{
         Locators locators = new Locators();
         SeleniumBase selenium = new SeleniumBase();
         WebActions webActions = new WebActions();
@@ -52,7 +54,7 @@ public class Homepage {
         return webActions.getText(locators.actualDestination);
     }
 
-    public String assertionGuests() {
+    public String assertionGuests()  throws InterruptedException{
         SeleniumBase selenium = new SeleniumBase();
         WebActions webActions = new WebActions();
         Locators locators = new Locators();
@@ -61,7 +63,7 @@ public class Homepage {
         return webActions.getText(locators.actualGuest);
     }
 
-    public String assertionDates() {
+    public String assertionDates()  throws InterruptedException{
         SeleniumBase selenium = new SeleniumBase();
         WebActions webActions = new WebActions();
         Locators locators = new Locators();
